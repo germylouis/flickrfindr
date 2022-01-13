@@ -6,6 +6,8 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+
+
 android {
     compileSdk 31
 
@@ -15,6 +17,12 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+
+        def keys = new Properties()
+        file("apikey.properties").withInputStream {
+            stream -> keys.load(stream)
+        }
+        buildConfigField ("String", "CONSUMER_KEY", keys.CONSUMER_KEY)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
