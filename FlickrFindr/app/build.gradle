@@ -6,8 +6,6 @@ plugins {
     id 'kotlin-parcelize'
 }
 
-
-
 android {
     compileSdk 31
 
@@ -22,7 +20,7 @@ android {
         file("apikey.properties").withInputStream {
             stream -> keys.load(stream)
         }
-        buildConfigField ("String", "CONSUMER_KEY", keys.CONSUMER_KEY)
+        buildConfigField("String", "CONSUMER_KEY", keys.CONSUMER_KEY)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
