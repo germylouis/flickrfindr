@@ -14,7 +14,7 @@ import kotlinx.serialization.SerialName
 
 data class Photo(
     @SerialName("id")
-    val id: Int,
+    val id: Long,
     @SerialName("owner")
     val owner: String,
     @SerialName("secret")

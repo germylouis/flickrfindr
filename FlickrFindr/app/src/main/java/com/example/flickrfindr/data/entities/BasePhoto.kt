@@ -13,9 +13,9 @@ package com.example.flickrfindr.data.entities
 import Photos
 import kotlinx.serialization.SerialName
 
-data class Json4Kotlin_Base(
-	@SerialName("photos")
+data class BasePhoto(
+    @SerialName("photos")
     val photos: Photos,
-	@SerialName("stat")
+    @SerialName("stat")
     val stat: String
 )
