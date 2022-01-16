@@ -11,4 +11,13 @@ interface PhotosService {
         @Query("format") format: String,
         @Query("nojsoncallback") callBack: String
     ): BasePhoto?
+
+    @GET("?method=flickr.photos.search")
+    suspend fun searchPhotos(
+        @Query("api_key") apiKey: String,
+        @Query("text") text: String = "",
+        @Query("per_page") numResults: String = "25",
+        @Query("format") format: String,
+        @Query("nojsoncallback") callBack: String
+    ): BasePhoto?
 }

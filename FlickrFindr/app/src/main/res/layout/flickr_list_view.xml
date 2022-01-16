@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app1:cardPreventCornerOverlap="false"
+        android:layout_margin="@dimen/margin_large"
         app1:layout_constraintBottom_toBottomOf="parent"
         app1:layout_constraintEnd_toEndOf="parent"
         app1:layout_constraintStart_toStartOf="parent"
@@ -30,14 +31,16 @@
 
             <!-- Title, secondary and supporting text -->
             <TextView
-                android:id="@+id/lbl_flickr_name"
+                android:id="@+id/lbl_flickr_title"
+                android:textColor="@color/white"
+                android:text="@string/card_view_title_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 tools:text="Name" />
 
             <TextView
-                android:id="@+id/fld_flickr_name"
+                android:id="@+id/fld_flickr_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -45,22 +48,6 @@
                 android:textColor="?android:attr/textColorSecondary"
                 tools:text="Tagline" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                tools:text="This will hold the description of the beer." />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/learn_more_button"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                tools:text="LEARN MORE" />
 
         </LinearLayout>
 

@@ -4,4 +4,6 @@ import com.example.flickrfindr.data.entities.BasePhoto
 
 interface PhotosRepos {
     suspend fun getRecentPhotos(): BasePhoto?
+
+    suspend fun searchPhotos(text: String?): BasePhoto?
 }

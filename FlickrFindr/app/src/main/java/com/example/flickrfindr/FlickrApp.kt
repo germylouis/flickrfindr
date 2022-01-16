@@ -15,9 +15,12 @@ import com.example.flickrfindr.databinding.FlickrActivityMainBinding
 import com.example.flickrfindr.ui.adapters.FlickrPhotoAdapter
 import com.example.flickrfindr.ui.fragments.PhotoFragment
 import com.example.flickrfindr.viewmodels.PhotosViewModel
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collect
+import com.example.flickrfindr.viewmodels.getQueryTextChangeStateFlow
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 
+@ExperimentalCoroutinesApi
+@FlowPreview
 @InternalCoroutinesApi
 class FlickrApp : AppCompatActivity(), FlickrPhotoAdapter.FlickrPhotoClicked {
     private var binding: FlickrActivityMainBinding? = null
@@ -46,6 +49,25 @@ class FlickrApp : AppCompatActivity(), FlickrPhotoAdapter.FlickrPhotoClicked {
                 adapter = FlickrPhotoAdapter(photos, listener)
 
             }
+        }
+
+        /**
+         * Code provided by https://blog.mindorks.com/instant-search-using-kotlin-flow-operators
+         */
+        lifecycleScope.launch {
+            binding?.searchView?.getQueryTextChangeStateFlow()
+                ?.debounce(300)
+                ?.distinctUntilChanged()
+                ?.flatMapLatest { query ->
+                    if (query == "") viewModel.getPhotos() else viewModel.searchPhotos(query)
+                }
+                ?.flowOn(Dispatchers.Default)
+                ?.collect { result ->
+                    binding?.flickRv?.apply {
+                        layoutManager = manager
+                        adapter = FlickrPhotoAdapter(result, listener)
+                    }
+                }
         }
 
     }

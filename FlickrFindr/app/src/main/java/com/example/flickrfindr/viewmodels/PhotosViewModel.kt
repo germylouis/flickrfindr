@@ -15,6 +15,10 @@ class PhotosViewModel(private val photosRepos: PhotosRepos) : ViewModel() {
         emit(photosRepos.getRecentPhotos())
     }
 
+    suspend fun searchPhotos(text: String): Flow<BasePhoto?> = flow {
+        emit(photosRepos.searchPhotos(text))
+    }
+
     class Factory(app: Application, private val photosRepos: PhotosRepos) : ViewModelFactory(app) {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return PhotosViewModel(photosRepos) as T

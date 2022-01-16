@@ -29,7 +29,7 @@ class FlickrPhotoAdapter(private val basePhoto: BasePhoto?, var flickrPhotoClick
             with(flickrListViewBinding) {
                 photo?.apply {
                     "https://live.staticflickr.com/${server}/${id}_${secret}_t.jpg".apply {
-                        fldFlickrName.text = title
+                        fldFlickrTitle.text = title
                         flickrPhoto.loadImage(this)
                         flickrPhoto.setOnClickListener { flickrPhotoClickedListener.onPhotoClicked(this) }
                     }
