@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23385416666666667" />
         <entry key="app/src/main/res/layout/flickr_list_view.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/fragment_photo_dialog.xml" value="0.15885416666666666" />
       </map>
     </option>
   </component>

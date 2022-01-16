@@ -13,38 +13,55 @@ import com.example.flickrfindr.data.repos.BasePhotosRepos
 import com.example.flickrfindr.data.repos.PhotosRepos
 import com.example.flickrfindr.databinding.FlickrActivityMainBinding
 import com.example.flickrfindr.ui.adapters.FlickrPhotoAdapter
+import com.example.flickrfindr.ui.fragments.PhotoFragment
 import com.example.flickrfindr.viewmodels.PhotosViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 @InternalCoroutinesApi
-class FlickrApp : AppCompatActivity() {
-    private var flickrActivityMainBinding: FlickrActivityMainBinding? = null
+class FlickrApp : AppCompatActivity(), FlickrPhotoAdapter.FlickrPhotoClicked {
+    private var binding: FlickrActivityMainBinding? = null
     private var photos: BasePhoto? = null
+    private var bundle: Bundle? = null
     private val photosRepos: PhotosRepos
         get() = BasePhotosRepos(BasePhotoDataSource())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        flickrActivityMainBinding = FlickrActivityMainBinding.inflate(layoutInflater)
-        setContentView(flickrActivityMainBinding?.root)
+        binding = FlickrActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
         val factory: ViewModelProvider.AndroidViewModelFactory = PhotosViewModel.Factory(application, photosRepos)
         val viewModel: PhotosViewModel by viewModels { factory }
         val manager = LinearLayoutManager(this)
+        val listener: FlickrPhotoAdapter.FlickrPhotoClicked = this
 
         lifecycleScope.launchWhenCreated {
             viewModel.getPhotos().collect {
                 Log.d("germ", "onCreate: ${it?.photos?.total}")
                 photos = it
             }
-            flickrActivityMainBinding?.flickRv?.apply {
+            binding?.flickRv?.apply {
                 layoutManager = manager
-                adapter = FlickrPhotoAdapter(photos)
+                adapter = FlickrPhotoAdapter(photos, listener)
 
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
+    override fun onPhotoClicked(photoUrl: String) {
+        val fragment = PhotoFragment()
+        bundle = Bundle()
+        bundle?.putString("photo_url", photoUrl)
+        fragment.arguments = bundle
+        supportFragmentManager.beginTransaction().replace(R.id.flickr_app_activity, fragment)
+            .addToBackStack(PhotoFragment.TAG).commit()
     }
 
 }
