@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">FlickrFindr</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Flickr Findr</string>
+
+    <!--    FlickrFindr MainActivity-->
+    <string name="card_view_title_label">Title:</string>
+
 </resources>
