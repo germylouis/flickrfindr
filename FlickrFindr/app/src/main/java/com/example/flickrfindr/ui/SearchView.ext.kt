@@ -1,4 +1,4 @@
-package com.example.flickrfindr.viewmodels
+package com.example.flickrfindr.ui
 
 import androidx.appcompat.widget.SearchView
 import kotlinx.coroutines.flow.Flow

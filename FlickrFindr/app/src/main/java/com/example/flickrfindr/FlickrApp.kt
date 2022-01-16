@@ -15,7 +15,7 @@ import com.example.flickrfindr.databinding.FlickrActivityMainBinding
 import com.example.flickrfindr.ui.adapters.FlickrPhotoAdapter
 import com.example.flickrfindr.ui.fragments.PhotoFragment
 import com.example.flickrfindr.viewmodels.PhotosViewModel
-import com.example.flickrfindr.viewmodels.getQueryTextChangeStateFlow
+import com.example.flickrfindr.ui.getQueryTextChangeStateFlow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
