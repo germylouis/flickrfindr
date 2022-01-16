@@ -1,3 +1,5 @@
+@file:JvmName("ImageViewExtension")
+
 package com.example.flickrfindr.api
 
 import android.graphics.Bitmap

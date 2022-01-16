@@ -83,7 +83,7 @@ class FlickrApp : AppCompatActivity(), FlickrPhotoAdapter.FlickrPhotoClicked {
         bundle?.putString("photo_url", photoUrl)
         fragment.arguments = bundle
         supportFragmentManager.beginTransaction().replace(R.id.flickr_app_activity, fragment)
-            .addToBackStack(PhotoFragment.TAG).commit()
+            .addToBackStack(PhotoFragment::class.java.name).commit()
     }
 
 }
