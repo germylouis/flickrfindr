@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flickrfindr.data.entities.BasePhoto
 import com.example.flickrfindr.data.entities.Photo
 import com.example.flickrfindr.databinding.FlickrListViewBinding
-import loadImage
+import com.example.flickrfindr.api.loadImage
 
 class FlickrPhotoAdapter(private val basePhoto: BasePhoto?, var flickrPhotoClickedListener: FlickrPhotoClicked) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

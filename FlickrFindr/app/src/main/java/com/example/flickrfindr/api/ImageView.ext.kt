@@ -1,3 +1,5 @@
+package com.example.flickrfindr.api
+
 import android.graphics.Bitmap
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
